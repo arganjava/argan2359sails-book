@@ -1,0 +1,47 @@
+<br>
+<% if (req.session.user && req.session.user.privilege === "admin" ) { %>
+<a href="/room/new" class="btn input">New Room</a>
+<% } %>
+<h4>List of Room</h4>
+<div class='table-responsive'>
+  <table class='table table-hover table-condensed' border="1">
+    <% if (!_.isEmpty(rooms)) { %>
+    <tr>
+      <th class="col-md-2"> Type</th>
+      <th class="col-md-2"> Description</th>
+      <th class="col-md-2"> Price</th>
+      <th class="col-md-2"> Total Quantity</th>
+      <th>Image</th>
+      <th class="col-md-2"> Booked Quantity</th>
+      <th class="col-md-2"> Remain Quantity</th>
+      <th class="col-md-2"> Action</th>
+    </tr>
+    <% } %>
+    <% _.forEach(rooms, function(room) { %>
+    <tr data-id="<%= room.id %>" data-model="room">
+      <td class="col-md-2"><%= room.type %></td>
+      <th class="col-md-2"><%= room.description %></th>
+      <th class="col-md-2"><%= room.price %></th>
+      <th class="col-md-2"><%= room.quantity %></th>
+      <th><img src="https://s-ec.bstatic.com/images/hotel/max1024x768/731/73118462.jpg" height="10%"></th>
+      <th class="col-md-2"><%= room.users.length %></th>
+      <th class="col-md-2"><%= room.quantity - room.users.length %></th>
+      <% if (req.session.user && req.session.user.privilege === "admin" ) { %>
+      <th class="col-md-2"><a href="/room/destroy/<%= room.id %>">Delete</a> | <a href="/room/edit/<%= room.id %>">Update</a>
+        | <a href="/room/book/<%= room.id %>">Book</a></th>
+      <% } else { %>
+      <th class="col-md-2">
+        <% if (room.quantity > room.users.length && req.session.user) { %>
+        <a href="/room/book/<%= room.id %>/<%= req.session.user.id %>">Book</a>
+        <% } else if (room.quantity > room.users.length && !req.session.user) { %>
+        Please login to book
+        <% } else { %>
+        Not Available
+        <% } %>
+      </th>
+      <% } %>
+    </tr>
+    <% }) %>
+  </table>
+</div>
+

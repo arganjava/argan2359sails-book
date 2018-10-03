@@ -1,0 +1,36 @@
+<form action="/user/update/<%= user.id %>" method="POST" role="form" class="new col-md-6">
+  <div class="form-group">
+    <h2>Edit User</h2>
+
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="enter full name" name="fullname" value="<%= user.fullname %>">
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="enter email, eg: user@email.com" name="email"
+             value="<%= user.email %>">
+    </div>
+
+    <div class="form-group">
+      <input type="number" class="form-control" placeholder="enter phone number, eg: +6512345678" name="phone"
+             value="<%= user.phone %>">
+    </div>
+
+    <div class="form-group">
+      <input type="password" class="form-control" placeholder="enter password" name="hashedPassword">
+    </div>
+
+    <div class="form-group">
+      <select class="form-control" name="privilege">
+        <% if(user.privilege === "admin") { %>
+        <option value="admin" selected>admin</option>
+        <option value="customer">customer</option>
+        <% } else { %>
+        <option value="admin" >admin</option>
+        <option value="customer" selected>customer</option>
+        <% } %>
+      </select>
+    </div>
+    <input type="submit" value="Submit" class="btn btn-default">
+  </div>
+</form>
