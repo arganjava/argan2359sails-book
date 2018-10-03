@@ -4,7 +4,7 @@ var password;
 module.exports.seeds = {
   user: [
     {
-      email: 'argan@2359media.com',
+      email: 'companyadmin@andaz.grid',
       hashedPassword: "1234",
       privilege: "admin"
     }

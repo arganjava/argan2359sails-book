@@ -26,10 +26,6 @@
       <th><img src="https://s-ec.bstatic.com/images/hotel/max1024x768/731/73118462.jpg" height="10%"></th>
       <th class="col-md-2"><%= room.users.length %></th>
       <th class="col-md-2"><%= room.quantity - room.users.length %></th>
-      <% if (req.session.user && req.session.user.privilege === "admin" ) { %>
-      <th class="col-md-2"><a href="/room/destroy/<%= room.id %>">Delete</a> | <a href="/room/edit/<%= room.id %>">Update</a>
-        | <a href="/room/book/<%= room.id %>">Book</a></th>
-      <% } else { %>
       <th class="col-md-2">
         <% if (room.quantity > room.users.length && req.session.user) { %>
         <a href="/room/book/<%= room.id %>/<%= req.session.user.id %>">Book</a>
@@ -39,7 +35,6 @@
         Not Available
         <% } %>
       </th>
-      <% } %>
     </tr>
     <% }) %>
   </table>

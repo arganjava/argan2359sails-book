@@ -45,6 +45,7 @@ module.exports.routes = {
   'get /room': "RoomController.index",
   'get /room/new': "RoomController.new",
   'post /room': "RoomController.create",
+  'post /room/update/:id': "RoomController.update",
   'get /room/edit/:id': "RoomController.edit",
   'get /room/book/:id/:userId': "RoomController.book",
   'get /room/cancelbook/:id/:userId': "RoomController.cancelbook",
@@ -67,9 +68,9 @@ module.exports.routes = {
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
 
   //API Room v1
-  'get /room': "v1/RoomController.index",
-  'get /room/book/:id': "v1/RoomController.book",
-  'get /room/cancelbook/:id': "v1/RoomController.cancelbook",
+  'get /v1/room': "v1/RoomController.index",
+  'get /v1/room/book/:id': "v1/RoomController.book",
+  'get /v1/room/cancelbook/:id': "v1/RoomController.cancelbook",
 
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗

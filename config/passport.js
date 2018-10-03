@@ -4,7 +4,6 @@ var bcrypt = require('bcrypt'),
     BearerStrategy = require('passport-http-bearer').Strategy,
     BasicStrategy = require('passport-http').BasicStrategy,
     LocalStrategy = require('passport-local').Strategy,
-    Auth0Strategy = require('passport-auth0'),
     ClientPasswordStrategy = require('passport-oauth2-client-password').Strategy;
 
     passport.serializeUser(function(user, done) {
@@ -16,23 +15,6 @@ var bcrypt = require('bcrypt'),
         done(err, user);
       });
     });
-
-
-/*var strategy = new Auth0Strategy({
-    domain:       'your-domain.auth0.com',
-    clientID:     'your-client-id',
-    clientSecret: 'your-client-secret',
-    callbackURL:  '/callback'
-  },
-  function(accessToken, refreshToken, extraParams, profile, done) {
-    // accessToken is the token to call Auth0 API (not needed in the most cases)
-    // extraParams.id_token has the JSON Web Token
-    // profile has all the information from the user
-    return done(null, profile);
-  }
-);
-
-passport.use(strategy);*/
 
 
     /**

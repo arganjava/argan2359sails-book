@@ -30,6 +30,9 @@ module.exports = {
         return [thisroom, user];
       }).spread(function (room, user) {
       if (room && user) {
+        if(room.quantity <= room.users.length ){
+          return res.send("Room not available");
+        }
         addUser(room, user);
         return res.send("Booked Success");
       } else {

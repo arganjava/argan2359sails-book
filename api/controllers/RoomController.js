@@ -17,14 +17,14 @@ module.exports = {
   create: function (req, res) {
     var body = req.body;
     Room.create(body).exec(function (err, rooms) {
-      return res.redirect("/room");
+      return res.redirect('/');
     })
   },
 
   destroy: function (req, res) {
     var id = req.param("id");
     Room.destroy({id: id}).exec(function (err, rooms) {
-      return res.redirect("/room");
+      return res.redirect('/');
     })
   },
 
@@ -36,10 +36,10 @@ module.exports = {
   },
 
   update: function (req, res) {
-    var body = req.body;
     var id = req.param("id");
-    Room.update(id, body).exec(function (err, room) {
-      return res.redirect("/room");
+    var body = req.body;
+    Room.update(id, body).exec(function (err, users) {
+      return res.redirect('/');
     })
   },
 
@@ -115,6 +115,9 @@ module.exports = {
 }
 
 
+async function updateRoom(id, body) {
+  return await Room.update(id).set(body);
+}
 
 async function addUser(room, user) {
   return await Room.addToCollection(room.id, 'users', user.id);
